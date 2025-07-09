@@ -74,17 +74,17 @@ import passwordhash from "password-hash";
 // };
 
  
-// export const getAllUsers = async (req, res, next) => {
-//   try {
-//     const users = await User.find({}, { password: 0 });  
-//     return res.status(200).json({
-//       msg: "Users fetched successfully",
-//       users,
-//     });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+export const getAllUsers = async (req, res, next) => {
+  try {
+    const users = await User.find({}, { password: 0 });  
+    return res.status(200).json({
+      msg: "Users fetched successfully",
+      users,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 export const userRegister = async (req, res, next) => {
   try {
     const { username, password } = req.body;
