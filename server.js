@@ -1,16 +1,14 @@
- 
-
 
 import express from "express";
 import dotenv from "dotenv";
-import "../Backend/Config/dbConnection.js";  
+import "./tempconfig/dbConnection.js";  
 import cors from "cors";
 import bodyParser from "body-parser"; 
 import http from "http";
 import { Server } from "socket.io";
  
 import userRouter from "./routes/userRoutes.js";
-import socketHandler from "./Config/socket.js";
+import socketHandler from "./tempconfig/socket.js";
 import messagerouter from './routes/messageRouter.js'
 dotenv.config();
 
