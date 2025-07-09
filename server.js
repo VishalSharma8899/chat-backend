@@ -13,10 +13,17 @@ import messagerouter from './routes/messageRouter.js'
 dotenv.config();
 
 const app = express();
-app.use(cors());
+ 
 app.use(bodyParser.json());
 app.use(express.json());
 const port = process.env.PORT || 5000;
+app.use(cors({
+  origin: [
+    "https://chat-frontend-o3tv.vercel.app", 
+    "https://chat-frontend-o3tv-git-main-vishal-sharmas-projects-ab23e010.vercel.app"
+  ],
+  credentials: true
+}));
 
  
 const server = http.createServer(app);
@@ -29,6 +36,9 @@ const io = new Server(server, {
 
  
 socketHandler(io);
+app.get('/', (req, res) => {
+  res.send('Chat API is running.');
+});
 
  
 
