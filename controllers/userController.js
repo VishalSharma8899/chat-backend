@@ -39,39 +39,39 @@ import passwordhash from "password-hash";
 // };
 
  
-// export const login = async (req, res) => {
-//   const { username, password } = req.body;
+export const login = async (req, res) => {
+  const { username, password } = req.body;
 
-//   const check = await User.findOne({ username });
-//   if (!check) {
-//     return res.status(404).json({
-//       msg: "User not found",
-//     });
-//   }
+  const check = await User.findOne({ username });
+  if (!check) {
+    return res.status(404).json({
+      msg: "User not found",
+    });
+  }
 
-//   if (passwordhash.verify(password, check.password)) {
-//     const userid = check._id;
-//     const token = generateToken(userid);
+  if (passwordhash.verify(password, check.password)) {
+    const userid = check._id;
+    const token = generateToken(userid);
 
-//     return res.status(200).json({
-//       msg: "Login successful",
-//       token,
-//       user: check,
-//     });
-//   }
+    return res.status(200).json({
+      msg: "Login successful",
+      token,
+      user: check,
+    });
+  }
 
-//   return res.status(401).json({
-//     msg: "Invalid password",
-//   });
-// };
+  return res.status(401).json({
+    msg: "Invalid password",
+  });
+};
 
  
-// const generateToken = (userid) => {
-//   const key = process.env.JWT_SECRET_KEY;
-//   return jwt.sign({ userid }, key, {
-//     expiresIn: 86400,
-//   });
-// };
+const generateToken = (userid) => {
+  const key = process.env.JWT_SECRET_KEY;
+  return jwt.sign({ userid }, key, {
+    expiresIn: 86400,
+  });
+};
 
  
 export const getAllUsers = async (req, res, next) => {
